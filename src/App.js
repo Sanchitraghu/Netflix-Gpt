@@ -1,16 +1,27 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
+import Login from "./pages/login/login";
+import ProtextedRoute from "./components/protected-route/protexted-route";
+import Home from "./pages/home-page/home";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ProtextedRoute>
+          <Home />
+        </ProtextedRoute>
+      ),
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ]);
   return (
     <div className="App">
-      <img
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="logo"
-      />
-
-      <h1 className=" font-bold text-purple-500">
-        This is front page of Netflix GPT
-      </h1>
+      <RouterProvider router={router} />
     </div>
   );
 }
