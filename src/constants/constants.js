@@ -6,4 +6,11 @@ const USER_ACCESS_KEY = {
   USER_ID: "user_id",
 };
 
-export { USER_ACCESS_KEY };
+const SHOW_TOAST = {
+  SUCCESS: "success",
+  ERROR: "error",
+  WARNING: "warning",
+  INFO: "info",
+};
+
+export { USER_ACCESS_KEY, SHOW_TOAST };
