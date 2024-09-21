@@ -2,6 +2,7 @@ import { useMemo, useRef, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +10,18 @@ import { useDispatch } from "react-redux";
 import { auth } from "../../utils/firebase.js";
 import { validateEmail, validatePassword } from "../../utils/validate.js";
 import { openNotification } from "../../constants/show-toast.js";
-import { SHOW_TOAST, USER_ACCESS_KEY } from "../../constants/constants.js";
+import {
+  PROFILE_IMAGE_URL,
+  SHOW_TOAST,
+  USER_ACCESS_KEY,
+} from "../../constants/constants.js";
 import { useError } from "../../hooks";
 import { addUserToStore } from "../../store/slices/user-slice/user-slice.jsx";
 
 const useLoginController = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState({ code: "" });
+  const userName = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const navigate = useNavigate();
@@ -43,6 +49,24 @@ const useLoginController = () => {
     []
   );
 
+  const updateUserNameOfUser = async (user) => {
+    try {
+      await updateProfile(user, {
+        displayName: userName.current?.value ? userName.current.value : "",
+        photoURL: PROFILE_IMAGE_URL.DEFAULT,
+      });
+      const userDetailsToAddInStore = {
+        uId: user?.uid,
+        email: user?.email,
+        displayName: userName.current?.value ? userName.current.value : "",
+        photoURL: PROFILE_IMAGE_URL.DEFAULT,
+      };
+      dispatch(addUserToStore(userDetailsToAddInStore));
+    } catch (error) {
+      setError({ ...error });
+    }
+  };
+
   const signUpUser = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
@@ -50,17 +74,12 @@ const useLoginController = () => {
         email.current.value,
         password.current.value
       );
-      const userDetailsToAddInStore = {
-        uId: user?.user?.uid,
-        email: user?.user?.email,
-      };
       if (user?.user?.accessToken && user?.user?.refreshToken) {
         Cookies.set(USER_ACCESS_KEY.ACCESS_TOKEN, user.user.accessToken);
         Cookies.set(USER_ACCESS_KEY.REFRESH_TOKEN, user.user.refreshToken);
-        Cookies.set(USER_ACCESS_KEY.EXPIRES_IN, user.user.accessTokenExpiresIn);
         Cookies.set(USER_ACCESS_KEY.USER_ID, user.user.id);
-        dispatch(addUserToStore(userDetailsToAddInStore));
-        navigate("/");
+        await updateUserNameOfUser(user.user);
+        // navigate("/");
       }
     } catch (error) {
       setError({ ...error });
@@ -77,11 +96,12 @@ const useLoginController = () => {
       const userDetailsToAddInStore = {
         uId: user?.user?.uid,
         email: user?.user?.email,
+        displayName: user?.user?.displayName ? user?.user?.displayName : "",
+        photoURL: PROFILE_IMAGE_URL.DEFAULT,
       };
       if (user?.user?.accessToken && user?.user?.refreshToken) {
         Cookies.set(USER_ACCESS_KEY.ACCESS_TOKEN, user.user.accessToken);
         Cookies.set(USER_ACCESS_KEY.REFRESH_TOKEN, user.user.refreshToken);
-        Cookies.set(USER_ACCESS_KEY.EXPIRES_IN, user.user.accessTokenExpiresIn);
         Cookies.set(USER_ACCESS_KEY.USER_ID, user.user.uid);
         dispatch(addUserToStore(userDetailsToAddInStore));
         navigate("/");
@@ -120,6 +140,7 @@ const useLoginController = () => {
   };
 
   return {
+    userName,
     email,
     password,
     isSignUp,

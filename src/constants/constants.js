@@ -13,4 +13,9 @@ const SHOW_TOAST = {
   INFO: "info",
 };
 
-export { USER_ACCESS_KEY, SHOW_TOAST };
+const PROFILE_IMAGE_URL = {
+  DEFAULT:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVzBLbR7bpz_8_tb4yDz6SrO2zK5rhR95XXA&s",
+};
+
+export { USER_ACCESS_KEY, SHOW_TOAST, PROFILE_IMAGE_URL };

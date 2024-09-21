@@ -7,6 +7,7 @@ import { Navigate } from "react-router-dom";
 
 const Login = () => {
   const {
+    userName,
     email,
     password,
     isSignUp,
@@ -45,7 +46,7 @@ const Login = () => {
                       ? email
                       : item.name === "password"
                       ? password
-                      : null
+                      : userName
                   }
                   className="px-3 py-4 bg-transparent border border-gray-500"
                   type={item.type}
