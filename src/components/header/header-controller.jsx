@@ -9,11 +9,16 @@ import {
 } from "../../store/slices/user-slice/user-slice";
 import { PROFILE_IMAGE_URL, USER_ACCESS_KEY } from "../../constants/constants";
 import { auth } from "../../utils/firebase";
+import { removeMovieDetails } from "../../store/slices/movie-slice/movie-slice";
 
 const useHeaderController = () => {
   const userDetails = useSelector((store) => store.user.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const navigateToHomePage = () => {
+    navigate("/");
+  };
 
   useEffect(() => {
     // It triggers when user logs in or logs out on component mount
@@ -48,6 +53,7 @@ const useHeaderController = () => {
         Cookies.remove(USER_ACCESS_KEY.REFRESH_TOKEN);
         Cookies.remove(USER_ACCESS_KEY.USER_ID);
         dispatch(removeUserFromStore());
+        dispatch(removeMovieDetails());
         navigate("/login");
       }
     });
@@ -61,7 +67,7 @@ const useHeaderController = () => {
       console.log(error);
     }
   };
-  return { userDetails, onSignOut };
+  return { userDetails, onSignOut, navigateToHomePage };
 };
 
 export default useHeaderController;
