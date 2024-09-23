@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/login/login";
-import ProtextedRoute from "./components/protected-route/protexted-route";
+import { ProtectedRoute } from "./components";
 import Home from "./pages/home-page/home";
 
 function App() {
@@ -9,9 +9,9 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtextedRoute>
+        <ProtectedRoute>
           <Home />
-        </ProtextedRoute>
+        </ProtectedRoute>
       ),
     },
     {

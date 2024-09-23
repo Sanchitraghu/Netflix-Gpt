@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { openNotification } from "../../constants/show-toast";
 import { SHOW_TOAST } from "../../constants/constants";
 

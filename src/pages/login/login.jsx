@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "../../components/header/header";
-import useLoginController from "./login-controller";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Header } from "../../components";
+import useLoginController from "./login-controller";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const {
