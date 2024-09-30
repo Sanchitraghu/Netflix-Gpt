@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useGetMovieTrailor, useGetMoviesData } from "./services";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,16 +17,35 @@ const useHomeController = () => {
   const getPopularMovies = useGetMoviesData(API_ROUTES.GET_POPULAR_MOVIES, 1);
   const getNowPlayingMovies = useGetMoviesData(
     API_ROUTES.GET_NOW_PLAYING_MOVIES,
-    1
+    2
   );
   const getTopRatedMovies = useGetMoviesData(
     API_ROUTES.GET_TOP_RATED_MOVIES,
-    1
+    3
   );
-  const getUpcomingMovies = useGetMoviesData(API_ROUTES.GET_UPCOMING_MOVIES, 1);
+  const getUpcomingMovies = useGetMoviesData(API_ROUTES.GET_UPCOMING_MOVIES, 4);
   const getMovieTrailor = useGetMovieTrailor(
     movieDetails?.movieDetailForTrailor?.id
   );
+
+  const movieListToShowOnSuggestions = [
+    {
+      name: "Now Playing",
+      data: movieDetails?.allNowPlayingMovies,
+    },
+    {
+      name: "Popular",
+      data: movieDetails?.allPopularMovies,
+    },
+    {
+      name: "Top Rated",
+      data: movieDetails?.allTopRatedMovies,
+    },
+    {
+      name: "Upcoming",
+      data: movieDetails?.allUpcomingMovies,
+    },
+  ];
 
   useEffect(() => {
     if (
@@ -86,6 +105,7 @@ const useHomeController = () => {
   return {
     trailorKey: movieDetails?.movieTrailorYoutubeKey,
     movieDetailForTrailor: movieDetails?.movieDetailForTrailor,
+    movieListToShowOnSuggestions,
   };
 };
 
