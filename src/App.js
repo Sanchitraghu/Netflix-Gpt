@@ -25,7 +25,7 @@ function App() {
       ),
     },
     {
-      path: "/payment-success",
+      path: "/payment-success/:userId",
       element: (
         <ProtectedRoute>
           <PaymentSuccess />

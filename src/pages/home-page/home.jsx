@@ -1,6 +1,7 @@
 import React from "react";
 import { Header, MoviesList } from "../../components";
 import useHomeController from "./home-controller";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { trailorKey, movieDetailForTrailor, movieListToShowOnSuggestions } =
@@ -27,14 +28,16 @@ const Home = () => {
               {movieDetailForTrailor?.overview?.split(" ")?.length > 30
                 ? movieDetailForTrailor?.overview
                     ?.split(" ")
-                    .slice(0,30)
+                    .slice(0, 30)
                     .join(" ") + "..."
                 : movieDetailForTrailor?.overview}
             </p>
             <div className="flex gap-4 mt-4 font-bold">
-              <button className="text-3xl bg-gray-200 text-black rounded-lg px-10 py-4 hover:bg-gray-300 ">
-                &#9658; Play
-              </button>
+              <Link to="/checkout">
+                <button className="text-3xl bg-gray-200 text-black rounded-lg px-10 py-4 hover:bg-gray-300 ">
+                  &#9658; Play
+                </button>
+              </Link>
               <button className="bg-gray-600 text-3xl text-white rounded-lg px-2 bg-opacity-50 hover:bg-opacity-90">
                 &#9432; More Info
               </button>

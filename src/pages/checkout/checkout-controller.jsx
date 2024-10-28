@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
 import { useStripeCheckoutPage } from "./services";
+import { useSelector } from "react-redux";
 
 const useCheckoutController = () => {
   const getCheckoutPageFromStripe = useStripeCheckoutPage();
 
+  const user = useSelector((store) => store.user.userDetails);
+  console.log(user);
   useEffect(() => {
-    getCheckoutPageFromStripe.mutate();
+    getCheckoutPageFromStripe.mutate(user?.uId);
   }, []);
 
   useEffect(() => {
