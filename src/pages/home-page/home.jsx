@@ -19,12 +19,17 @@ const Home = () => {
               ></iframe>
             )}
           </div>
-          <div className="text-white absolute top-0 bg-gradient-to-br from-black py-[20rem] pb-[18.36rem] pl-40 ">
+          <div className="text-white absolute top-0 bg-gradient-to-br from-black py-[20rem] pb-[18.36rem] pl-40 pr-96">
             <h1 className="text-5xl text-red-600 font-bold">
               {movieDetailForTrailor?.original_title}
             </h1>
             <p className="w-1/4 mt-5 text-lg">
-              {movieDetailForTrailor?.overview}
+              {movieDetailForTrailor?.overview?.split(" ")?.length > 30
+                ? movieDetailForTrailor?.overview
+                    ?.split(" ")
+                    .slice(0,30)
+                    .join(" ") + "..."
+                : movieDetailForTrailor?.overview}
             </p>
             <div className="flex gap-4 mt-4 font-bold">
               <button className="text-3xl bg-gray-200 text-black rounded-lg px-10 py-4 hover:bg-gray-300 ">

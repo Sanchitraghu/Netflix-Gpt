@@ -54,7 +54,7 @@ const useHomeController = () => {
       getPopularMovies?.data?.results?.length > 0
     ) {
       dispatch(addAllPopularMovies(getPopularMovies?.data?.results));
-      dispatch(addMovieDetailForTrailor(getPopularMovies?.data?.results?.[2]));
+      dispatch(addMovieDetailForTrailor(getPopularMovies?.data?.results?.[5]));
     }
   }, [getPopularMovies?.isSuccess, getPopularMovies?.data]);
 
