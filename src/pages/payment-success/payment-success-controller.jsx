@@ -25,7 +25,6 @@ const usePaymentSuccessController = () => {
       const subscriptionExpiresOn =
         subscribeUserToNetflixMonthlyPlan.data?.data?.subscriptionExpiresOn;
       dispatch(addSubscriptionExpiresOn(subscriptionExpiresOn));
-      console.log(subscriptionExpiresOn, "subscriptionExpiresOn");
       setTimeout(() => {
         setuserSubscribedSuccessfully({
           loaderUrl: paymentSuccessLoader,

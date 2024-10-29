@@ -13,6 +13,7 @@ import { API_ROUTES } from "../../enums";
 
 const useHomeController = () => {
   const movieDetails = useSelector((store) => store.movie);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const getPopularMovies = useGetMoviesData(API_ROUTES.GET_POPULAR_MOVIES, 1);
   const getNowPlayingMovies = useGetMoviesData(
@@ -54,7 +55,7 @@ const useHomeController = () => {
       getPopularMovies?.data?.results?.length > 0
     ) {
       dispatch(addAllPopularMovies(getPopularMovies?.data?.results));
-      dispatch(addMovieDetailForTrailor(getPopularMovies?.data?.results?.[5]));
+      dispatch(addMovieDetailForTrailor(getPopularMovies?.data?.results?.[3]));
     }
   }, [getPopularMovies?.isSuccess, getPopularMovies?.data]);
 
@@ -106,6 +107,10 @@ const useHomeController = () => {
     trailorKey: movieDetails?.movieTrailorYoutubeKey,
     movieDetailForTrailor: movieDetails?.movieDetailForTrailor,
     movieListToShowOnSuggestions,
+    alreadySubscribeToNetflixMonthlyPlan:
+      new Date(user?.subscriptionExpiresOn) > Date.now(),
+    userId: user?.userDetails?.uId,
+    isSubscriptionDetailsAvailable: user?.subscriptionExpiresOn,
   };
 };
 

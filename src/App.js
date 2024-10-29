@@ -17,7 +17,7 @@ function App() {
       ),
     },
     {
-      path: "/checkout",
+      path: "/checkout/:userId",
       element: (
         <ProtectedRoute>
           <Checkout />

@@ -5,8 +5,7 @@ export const API_ROUTES = {
   GET_UPCOMING_MOVIES: "/upcoming?language=en-US",
   GET_MOVIE_TRAILOR: "videos?language=en-US",
   GET_THUMNAIL_OF_MOVIE: "https://image.tmdb.org/t/p/w500",
-  GET_USER_SUBSCRIPTION_DETAILS:
-    "/api/v1/checkout/get-user-subscription-details",
+  GET_USER_SUBSCRIPTION_DETAILS: "/api/v1/checkout/subscription-expire-details",
 };
 
 export const MUATATION_KEYS = {

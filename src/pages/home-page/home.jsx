@@ -4,8 +4,14 @@ import useHomeController from "./home-controller";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const { trailorKey, movieDetailForTrailor, movieListToShowOnSuggestions } =
-    useHomeController();
+  const {
+    trailorKey,
+    movieDetailForTrailor,
+    movieListToShowOnSuggestions,
+    alreadySubscribeToNetflixMonthlyPlan,
+    userId,
+    isSubscriptionDetailsAvailable,
+  } = useHomeController();
   return (
     <>
       <div>
@@ -33,8 +39,17 @@ const Home = () => {
                 : movieDetailForTrailor?.overview}
             </p>
             <div className="flex gap-4 mt-4 font-bold">
-              <Link to="/checkout">
-                <button className="text-3xl bg-gray-200 text-black rounded-lg px-10 py-4 hover:bg-gray-300 ">
+              <Link
+                to={
+                  alreadySubscribeToNetflixMonthlyPlan
+                    ? `/play-trailer/${trailorKey}`
+                    : `/checkout/${userId}`
+                }
+              >
+                <button
+                  disabled={!userId || !isSubscriptionDetailsAvailable}
+                  className="text-3xl bg-gray-200 text-black rounded-lg px-10 py-4 hover:bg-gray-300 "
+                >
                   &#9658; Play
                 </button>
               </Link>

@@ -4,6 +4,7 @@ import { MUATATION_KEYS } from "../../../../enums";
 import apiClientStripe from "../../../../apis/api-stripe";
 
 const getCheckoutPageFromStripe = async (uuid) => {
+  if (!uuid) return;
   try {
     const { data } = await apiClientStripe.post(
       "/api/v1/checkout/create-checkout-session",

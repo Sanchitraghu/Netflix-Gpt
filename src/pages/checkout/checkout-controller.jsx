@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import { useStripeCheckoutPage } from "./services";
-import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const useCheckoutController = () => {
   const getCheckoutPageFromStripe = useStripeCheckoutPage();
+  const navigate = useNavigate();
 
-  const user = useSelector((store) => store.user.userDetails);
-  console.log(user);
+  const { userId } = useParams();
+
   useEffect(() => {
-    getCheckoutPageFromStripe.mutate(user?.uId);
+    if (!userId) {
+      navigate("/");
+    }
+    getCheckoutPageFromStripe.mutate(userId);
   }, []);
 
   useEffect(() => {

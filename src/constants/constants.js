@@ -21,9 +21,13 @@ const PROFILE_IMAGE_URL = {
 const PAYMENT_LOADER_GIF_URL =
   "https://i.pinimg.com/originals/b2/d4/b2/b2d4b2c0f0ff6c95b0d6021a430beda4.gif";
 
+const NETFLIX_LOGO_URL =
+  "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
+
 export {
   USER_ACCESS_KEY,
   SHOW_TOAST,
   PROFILE_IMAGE_URL,
   PAYMENT_LOADER_GIF_URL,
+  NETFLIX_LOGO_URL,
 };

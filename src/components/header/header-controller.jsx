@@ -4,17 +4,22 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import {
+  addSubscriptionExpiresOn,
   addUserToStore,
   removeUserFromStore,
 } from "../../store/slices/user-slice/user-slice";
 import { PROFILE_IMAGE_URL, USER_ACCESS_KEY } from "../../constants/constants";
 import { auth } from "../../utils/firebase";
 import { removeMovieDetails } from "../../store/slices/movie-slice/movie-slice";
+import { useGetUserSubscriptionDetails } from "../../services";
 
 const useHeaderController = () => {
   const userDetails = useSelector((store) => store.user.userDetails);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const getUserSubscriptionExpireDetails = useGetUserSubscriptionDetails(
+    userDetails?.uId
+  );
 
   const navigateToHomePage = () => {
     navigate("/");
@@ -67,6 +72,24 @@ const useHeaderController = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (
+      getUserSubscriptionExpireDetails?.isSuccess &&
+      getUserSubscriptionExpireDetails?.data &&
+      getUserSubscriptionExpireDetails?.data?.subscriptionExpiresOn?.length > 0
+    ) {
+      dispatch(
+        addSubscriptionExpiresOn(
+          getUserSubscriptionExpireDetails?.data?.subscriptionExpiresOn
+        )
+      );
+    }
+  }, [
+    getUserSubscriptionExpireDetails?.isSuccess,
+    getUserSubscriptionExpireDetails?.data,
+  ]);
+
   return { userDetails, onSignOut, navigateToHomePage };
 };
 
