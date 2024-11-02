@@ -2,10 +2,14 @@ import React from "react";
 import useHeaderController from "./header-controller";
 import { NETFLIX_LOGO_URL, PROFILE_IMAGE_URL } from "../../constants/constants";
 
-const Header = ({ isLoginPage }) => {
+const Header = ({ isLoginPage, isPlayPage }) => {
   const { userDetails, onSignOut, navigateToHomePage } = useHeaderController();
   return (
-    <div className="absolute flex justify-between z-30 w-full bg-gradient-to-b from-black ">
+    <div
+      className={`absolute flex justify-between z-30 w-full bg-gradient-to-b from-black ${
+        isPlayPage && `bg-black`
+      }`}
+    >
       <img
         onClick={navigateToHomePage}
         className="w-48 ml-40 mt-4"

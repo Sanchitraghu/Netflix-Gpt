@@ -42,7 +42,7 @@ const Home = () => {
               <Link
                 to={
                   alreadySubscribeToNetflixMonthlyPlan
-                    ? `/play-trailer/${trailorKey}`
+                    ? `/play-video/${movieDetailForTrailor?.id}`
                     : `/checkout/${userId}`
                 }
               >

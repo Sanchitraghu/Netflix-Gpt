@@ -49,10 +49,14 @@ const useHeaderController = () => {
           );
           Cookies.set(USER_ACCESS_KEY.USER_ID, user.uid);
           dispatch(addUserToStore(userDetailsToAddInStore));
-          navigate("/");
+          if (window.location.href.split("/")?.length <= 4) {
+            navigateToHomePage();
+          }
         }
         dispatch(addUserToStore(userDetailsToAddInStore));
-        navigate("/");
+        if (window.location.href.split("/")?.length <= 4) {
+          navigateToHomePage();
+        }
       } else {
         Cookies.remove(USER_ACCESS_KEY.ACCESS_TOKEN);
         Cookies.remove(USER_ACCESS_KEY.REFRESH_TOKEN);
