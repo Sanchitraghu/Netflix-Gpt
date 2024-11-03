@@ -2,7 +2,9 @@ import { useQuery } from "react-query";
 import apiClient from "../../../../apis";
 
 const getMoviesDataFromTMDB = async (movieTypeRoute, pageNumber) => {
-  const response = await apiClient.get(`${movieTypeRoute}&page=${pageNumber}`);
+  const response = await apiClient.get(
+    `/movie/${movieTypeRoute}&page=${pageNumber}`
+  );
   return response.data;
 };
 

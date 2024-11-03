@@ -6,6 +6,7 @@ import Home from "./pages/home-page/home";
 import Checkout from "./pages/checkout/checkout";
 import PaymentSuccess from "./pages/payment-success/payment-success";
 import PlayVideo from "./pages/play-video/play-video";
+import SearchMoviePage from "./pages/search-movie-page/search-movie-page";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,6 +39,14 @@ function App() {
       element: (
         <ProtectedRoute>
           <PlayVideo />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/search-movie/gpt",
+      element: (
+        <ProtectedRoute>
+          <SearchMoviePage />
         </ProtectedRoute>
       ),
     },

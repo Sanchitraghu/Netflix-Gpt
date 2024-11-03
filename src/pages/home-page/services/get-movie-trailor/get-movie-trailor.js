@@ -5,7 +5,7 @@ import { API_ROUTES } from "../../../../enums";
 const getMovieTrailorByMovieId = async (movieId) => {
   if (!movieId) return;
   const response = await apiClient.get(
-    `/${movieId}/${API_ROUTES.GET_MOVIE_TRAILOR}`
+    `/movie/${movieId}/${API_ROUTES.GET_MOVIE_TRAILOR}`
   );
   return response.data;
 };

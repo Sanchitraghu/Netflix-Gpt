@@ -2,8 +2,9 @@ import React from "react";
 import useHeaderController from "./header-controller";
 import { NETFLIX_LOGO_URL, PROFILE_IMAGE_URL } from "../../constants/constants";
 
-const Header = ({ isLoginPage, isPlayPage }) => {
-  const { userDetails, onSignOut, navigateToHomePage } = useHeaderController();
+const Header = ({ isLoginPage, isPlayPage, isSearchPage }) => {
+  const { userDetails, onSignOut, navigateToHomePage, navigateToSearchPage } =
+    useHeaderController();
   return (
     <div
       className={`absolute flex justify-between z-30 w-full bg-gradient-to-b from-black ${
@@ -29,6 +30,12 @@ const Header = ({ isLoginPage, isPlayPage }) => {
             src={PROFILE_IMAGE_URL.DEFAULT}
             alt="profile"
           />
+          <button
+            onClick={isSearchPage ? navigateToHomePage : navigateToSearchPage}
+            className="bg-gray-500 h-10 px-2 mt-7 text-sm font-semibold text-white rounded-md hover:bg-red-700"
+          >
+            {isSearchPage ? `Go To Home` : `Explore Movies`}
+          </button>
           <button
             onClick={onSignOut}
             className="bg-red-600 h-10 px-2 mt-7 text-sm font-semibold text-white rounded-md hover:bg-red-700"

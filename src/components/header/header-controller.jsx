@@ -25,6 +25,10 @@ const useHeaderController = () => {
     navigate("/");
   };
 
+  const navigateToSearchPage = () => {
+    navigate("/search-movie/gpt");
+  };
+
   useEffect(() => {
     // It triggers when user logs in or logs out on component mount
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -94,7 +98,7 @@ const useHeaderController = () => {
     getUserSubscriptionExpireDetails?.data,
   ]);
 
-  return { userDetails, onSignOut, navigateToHomePage };
+  return { userDetails, onSignOut, navigateToHomePage, navigateToSearchPage };
 };
 
 export default useHeaderController;

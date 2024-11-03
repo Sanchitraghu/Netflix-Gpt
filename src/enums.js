@@ -1,8 +1,8 @@
 export const API_ROUTES = {
-  GET_POPULAR_MOVIES: "/popular?language=en-US",
-  GET_NOW_PLAYING_MOVIES: "/now_playing?language=en-US",
-  GET_TOP_RATED_MOVIES: "/top_rated?language=en-US",
-  GET_UPCOMING_MOVIES: "/upcoming?language=en-US",
+  GET_POPULAR_MOVIES: "popular?language=en-US",
+  GET_NOW_PLAYING_MOVIES: "now_playing?language=en-US",
+  GET_TOP_RATED_MOVIES: "top_rated?language=en-US",
+  GET_UPCOMING_MOVIES: "upcoming?language=en-US",
   GET_MOVIE_TRAILOR: "videos?language=en-US",
   GET_THUMNAIL_OF_MOVIE: "https://image.tmdb.org/t/p/w500",
   GET_USER_SUBSCRIPTION_DETAILS: "/api/v1/checkout/subscription-expire-details",
