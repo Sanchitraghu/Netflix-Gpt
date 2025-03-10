@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClientStripe = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://netflix-backend-z221.onrender.com",
 });
 
 apiClientStripe.interceptors.request.use(

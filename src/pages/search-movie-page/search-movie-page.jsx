@@ -6,6 +6,7 @@ import useSearchMoviePageController from "./search-movie-page-controller";
 const SearchMoviePage = () => {
   const { movieTitle, searchedMovieList, onSearchedButtonClick } =
     useSearchMoviePageController();
+
   return (
     <div>
       <Header isSearchPage={true} />

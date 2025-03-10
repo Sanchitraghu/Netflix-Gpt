@@ -22,6 +22,7 @@ const useLoginController = () => {
   const email = useRef(null);
   const password = useRef(null);
   const isUserLoggedIn = Cookies.get(USER_ACCESS_KEY.ACCESS_TOKEN);
+
   useError(error);
   const inputArray = useMemo(
     () => [
