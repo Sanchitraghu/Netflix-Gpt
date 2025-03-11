@@ -27,6 +27,9 @@ const NETFLIX_LOGO_URL =
 const NETFLIX_BACKGROUND_IMAGE =
   "https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/IN-en-20240916-TRIFECTA-perspective_72df5d07-cf3f-4530-9afd-8f1d92d7f1a8_large.jpg";
 
+const SEARCH_LOADER =
+  "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExbzBrc2QwdW9sd2h5bmJvbDV6MjV4eHk1MWk5OWRybGl0dmM2dGZ6NSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/FgH5xSNjGHZsiYPWAX/giphy.gif";
+
 export {
   USER_ACCESS_KEY,
   SHOW_TOAST,
@@ -34,4 +37,5 @@ export {
   PAYMENT_LOADER_GIF_URL,
   NETFLIX_LOGO_URL,
   NETFLIX_BACKGROUND_IMAGE,
+  SEARCH_LOADER,
 };

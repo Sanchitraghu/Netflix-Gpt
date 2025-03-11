@@ -1,11 +1,20 @@
 import React from "react";
-import { NETFLIX_BACKGROUND_IMAGE } from "../../constants/constants";
+import {
+  NETFLIX_BACKGROUND_IMAGE,
+  SEARCH_LOADER,
+} from "../../constants/constants";
 import { Header, MoviesList } from "../../components";
 import useSearchMoviePageController from "./search-movie-page-controller";
 
 const SearchMoviePage = () => {
-  const { movieTitle, searchedMovieList, onSearchedButtonClick } =
-    useSearchMoviePageController();
+  const {
+    movieTitle,
+    searchedMovieList,
+    alreadySubscribeToNetflixMonthlyPlan,
+    userId,
+    isSearchLoaderVisible,
+    onSearchedButtonClick,
+  } = useSearchMoviePageController();
 
   return (
     <div>
@@ -29,15 +38,27 @@ const SearchMoviePage = () => {
           </button>
         </div>
       </div>
-      <div className="absolute rounded-lg flex flex-col gap-4 left-60 ml-32 text-white p-10 bg-black bg-opacity-80 z-50 -top-[28rem]">
-        {searchedMovieList && searchedMovieList?.length > 0 && (
-          <MoviesList
-            movieGenre="Searched Movies"
-            movieList={searchedMovieList}
-            isSearchPage={true}
-          />
-        )}
-      </div>
+
+      {isSearchLoaderVisible ? (
+        <div className="absolute top-[28rem] left-[55rem] rounded-lg bg-black bg-opacity-80 w-24 h-24 ">
+          <img src={SEARCH_LOADER} alt="search-loader" />
+        </div>
+      ) : (
+        <div className="absolute rounded-lg flex flex-col gap-4 left-60 ml-32 text-white p-10 bg-black bg-opacity-80 z-50 -top-[28rem]">
+          {searchedMovieList && searchedMovieList?.length > 0 && (
+            <MoviesList
+              movieGenre="Searched Movies"
+              movieList={searchedMovieList}
+              isSearchPage={true}
+              alreadySubscribeToNetflixMonthlyPlan={
+                alreadySubscribeToNetflixMonthlyPlan
+              }
+              userId={userId}
+            />
+          )}
+        </div>
+      )}
+
       <div className="bg-opacity-50">
         <img
           src={NETFLIX_BACKGROUND_IMAGE}

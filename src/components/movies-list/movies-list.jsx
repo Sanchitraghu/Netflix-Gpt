@@ -2,7 +2,13 @@ import React from "react";
 import MovieCard from "../movie-card/movie-card";
 import { Link } from "react-router-dom";
 
-const MoviesList = ({ movieGenre, movieList, isSearchPage }) => {
+const MoviesList = ({
+  movieGenre,
+  movieList,
+  isSearchPage,
+  alreadySubscribeToNetflixMonthlyPlan,
+  userId,
+}) => {
   return (
     <div
       className={`relative z-40 top-[48rem] ml-16 ${
@@ -17,7 +23,14 @@ const MoviesList = ({ movieGenre, movieList, isSearchPage }) => {
         <div className="flex gap-4 overflow-x-scroll scrollbar-hide">
           {movieList?.map((movie) => {
             return (
-              <Link key={`${movie?.id}`} to={`/play-video/${movie?.id}`}>
+              <Link
+                key={`${movie?.id}`}
+                to={
+                  alreadySubscribeToNetflixMonthlyPlan
+                    ? `/play-video/${movie?.id}`
+                    : `/checkout/${userId}`
+                }
+              >
                 <MovieCard
                   moviePoster={movie?.poster_path}
                   movieTitle={movie?.title}

@@ -63,6 +63,10 @@ const Home = () => {
       <div className="bg-black text-white w-full h-[130rem]">
         {movieListToShowOnSuggestions?.map((movieSuggestion) => (
           <MoviesList
+            alreadySubscribeToNetflixMonthlyPlan={
+              alreadySubscribeToNetflixMonthlyPlan
+            }
+            userId={userId}
             movieGenre={movieSuggestion?.name}
             movieList={movieSuggestion?.data}
           />
